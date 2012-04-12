@@ -1,10 +1,34 @@
 Flake is inspired by [FormSpring Flake](https://github.com/formspring/flake) which is then inspired by [Twitter's Snowflake](https://github.com/twitter/snowflake) ^^
 
-Speed:
+### Usage
 
-Flake is *really* fast with Thrift protocol. The following result was benchmarked using a Xeon 2.5Ghz:
+Flake supports HTTP and Thrift protocol to generate unique ids.
+
+HTTP:
+
+    /worker-id
+    /id
+    /stats
+    /timestamp
+
+Thrift:
+    
+    service Flake {
+      i64 get_worker_id()
+      i64 get_timestamp()
+      i64 get_id()
+      string get_stats()
+    }
+
+### Speed
+
+Flake is *really* fast with Thrift protocol.
+Benchmarking agaist a Xeon 2.5Ghz from another machine on the same network:
 
     python benchmark.py -h xeon-server:8000 -n 10000 -c 50
+
+Result:
+
     Concurrency Level:      50
     Time taken for tests:   0.200 seconds
     Complete requests:      10000
@@ -25,4 +49,4 @@ Flake is *really* fast with Thrift protocol. The following result was benchmarke
             80%     0.019
             90%     0.037
             99%     0.066
-  
+
