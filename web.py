@@ -77,7 +77,7 @@ def main():
         (r"/id", IdHandler),
         (r"/stats", StatsHandler),
         (r"/timestamp", TimestampHandler),
-    ], static_path="./static")
+    ])
 
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(options.port)
